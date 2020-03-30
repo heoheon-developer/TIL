@@ -19,7 +19,3 @@ def abs_square(a):
 
 print(abs_sign(5))
 print(abs_sign(-3))
-
-print(abs_square(5))
-
-
