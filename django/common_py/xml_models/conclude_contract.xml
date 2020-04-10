@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="bx_Dublin.xsd">
+  <contract>
+    <contract_number><![CDATA[root/contract/contract_number]]></contract_number>
+    <title><![CDATA[root/contract/title]]></title>
+    <content><![CDATA[root/contract/content]]></content>
+    <timeStamp><![CDATA[root/contract/timeStamp]]></timeStamp>
+    <audit_trail><![CDATA[root/contract/audit_trail]]></audit_trail>
+  </contract>
+</root>

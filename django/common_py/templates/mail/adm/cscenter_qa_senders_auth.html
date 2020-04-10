@@ -1,0 +1,122 @@
+{% load static %}
+{% load i18n %}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f0f3f4">
+  <colgroup><col width="*" />
+    <col width="600" />
+    <col width="*" />
+  </colgroup>
+  <tr>
+    <td colspan="3" height="20"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <table width="600" border="0" cellpadding="0" cellspacing="0" bgcolor="white">
+        <colgroup>
+          <col width="30" />
+          <col width="*" />
+          <col width="30" />
+        </colgroup>
+        <tr>
+          <td colspan="3">
+            <img src="{{MAIL_HEADER_IMG}}" width="600" height="84" alt="Keiyaku.ai">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" height="40"></td>
+        </tr>
+        <tr>
+          <td rowspan="4"></td>
+          <td></td>
+          <td rowspan="4"></td>
+        </tr>
+        <tr>
+          <td style="line-height:150%; font-size:13px;">
+            こんにちは, Keiyaku.ai  <span style="color:#2c66b7; font-weight: bold">{{name}}</span>様!
+            <br /><br />Keiyaku.aiに1：1お問い合わせの受信者として登録されました。<br />
+            下のボタンをクリックした後Keiyaku.aiユーザーの1：1お問い合わせをメールで受信できます。
+          </td>
+        </tr>
+        <tr>
+          <td height="40"></td>
+        </tr>
+        <tr>
+          <td align="center" style="font-size:13px;">
+            1：1お問い合わせの受信者登録日時 : {{date}}<br />1：1お問い合わせの受信メール : {{email}}
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" height="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td rowspan="4"></td><td></td><td rowspan="4"></td>
+        </tr>
+        <tr>
+          <td style="line-height:150%; font-size:13px;">
+            注意！Keiyaku.aiとは関係のない方は、Eメール認証ボタンを押さないでください。<br />不要な電子メールが受信されます。
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" height="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="3" align="center" style="line-height: 1;">
+            <a href="{{link}}" target="_blank" style="display:inline-block; color:white; padding:18px 40px; font-size:13px; text-decoration:none; background-color:#2c66b7; border-radius: 4px; font-weight: bold">Eメール認証</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" height="50">&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="30" colspan="2" style="font-size:13px; color: #d34242; font-weight: bold;">
+            <img src="{{ icoNoticeImgUrl }}" width="12" height="10" style="margin-right: 4px;" alt="">注意事項
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="1" style="background-color:#ddd;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="20" colspan="2" style="padding-top: 10px; font-size:13px; color: #d34242; font-weight: bold;">
+            <img src="{{icoBulletImgUrl}}" width="4" height="4" style="margin-right: 4px; vertical-align: 3px;" alt="">Eメールとリンクを共有しないでください。
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="30" style="font-size:13px; line-height:150%; color: #666666;">外部共有および配信によって発生する問題について Keiyaku.ai は責任を負いません。</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="3" height="10"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="20" colspan="2" style="font-size:13px; color: #d34242; font-weight: bold;">
+            <img src="{{icoBulletImgUrl}}" width="4" height="4" style="margin-right: 4px; vertical-align: 3px;" alt="">Eメール アカウントを削除しないでください。
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td height="30" style="font-size:13px; line-height:150%; color: #666666;">
+            1：1お問い合わせの受信に関する重要な内容を含むご案内メールです。メールの削除、受信拒否などで1：1お問い合わせ受信が行われない場合は、Keiyaku.aiは責任を負いません。
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="3" height="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="background-color:#e5e5e5;"></td>
+          <td colspan="2" height="80" style="line-height:150%; font-size:12px; color:#666666; background-color:#e5e5e5;">本メールは発信専用への返信となりません。</td>
+        </tr>
+      </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="3" height="20">&nbsp;</td>
+  </tr>
+</table>

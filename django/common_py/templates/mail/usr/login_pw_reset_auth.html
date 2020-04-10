@@ -1,0 +1,119 @@
+{% load static %}
+{% load i18n %}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f0f3f4">
+    <colgroup>
+        <col width="*">
+            <col width="600">
+                <col width="*">
+    </colgroup>
+    <tbody>
+        <tr>
+            <td colspan="3" height="20"></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <table width="600" border="0" cellpadding="0" cellspacing="0" bgcolor="white">
+                    <colgroup>
+                        <col width="30">
+                            <col width="*">
+                                <col width="30">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="3"><img src="{{ headerImgUrl }}" width="600" height="84" alt="{% trans 'keiyaku.ai' %}" class="CToWUd"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="40"></td>
+
+                        </tr>
+                        <tr>
+                            <td rowspan="4"></td>
+                            <td></td>
+                            <td rowspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:150%;font-size:13px">{% trans '안녕하세요' %}{% trans 'keiyaku.ai' %} <span style="color:#2c66b7;font-weight:bold">{% trans '고객' %}</span>{% trans '님!' %}
+                                <br>
+                                <br>{% trans 'keiyaku.ai' %}{% trans '비밀번호 재설정 페이지의 확인코드란에,' %}
+                                <wbr>{% trans '아래의 코드를 입력해주세요.' %}
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="40"></td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="font-size:13px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="30" align="center">&nbsp;{% trans '확인코드 :' %} {{ authCode }} </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4"></td>
+                            <td></td>
+                            <td rowspan="4"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="30">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="center" style="line-height:1">
+                                <a href="{{ pageLink }}" style="display:inline-block;color:white;padding:18px 40px;font-size:13px;text-decoration:none;background-color:#2c66b7;border-radius:4px;font-weight:bold" target="_blank">{% trans '비밀번호 재설정 페이지로' %}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="50">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="30" colspan="2" style="font-size:13px;color:#d34242;font-weight:bold"><img src="{{ icoNoticeImgUrl }}" width="12" height="10" style="margin-right:4px" alt="" class="CToWUd">{% trans '주의사항' %}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="1" style="background-color:#ddd"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="20" colspan="2" style="padding-top:10px;font-size:13px;color:#d34242;font-weight:bold"><img src="{{ icoBulletImgUrl }}" width="4" height="4" style="margin-right:4px;vertical-align:3px" alt="" class="CToWUd">{% trans '이메일과 링크를 공유하지말아주세요.' %}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="30" style="font-size:13px;line-height:150%;color:#666666">{% trans '이 메일과 링크를 공유할 경우,' %}
+                                <wbr>{% trans '승인되지 않은 제 3자가 내용을 확인하여,' %}
+                                <wbr>{% trans '서명할 수 있습니다.' %}
+                                <wbr>{% trans '이때 발생하는 문제에 대하여 keiyaku.ai는 책임을지지 않습니다.' %}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="10"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="20" colspan="2" style="font-size:13px;color:#d34242;font-weight:bold"><img src="{{ icoBulletImgUrl }}" width="4" height="4" style="margin-right:4px;vertical-align:3px" alt="" class="CToWUd">{% trans '이메일 어카운트를 삭제하지 말아주세요.' %}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td height="30" style="font-size:13px;line-height:150%;color:#666666">{% trans '서명진행중의 중요한 내용을 포함하는 안내메일입니다.' %}
+                                <wbr>{% trans '메일의 삭제, 수신거부등으로 회원등록이 완료되지 않아있을경우,' %}
+                                <wbr>{% trans 'keiyaku.ai는 책임을 지지 않습니다.' %}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" height="30">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#e5e5e5"></td>
+                            <td colspan="2" height="80" style="line-height:150%;font-size:12px;color:#666666;background-color:#e5e5e5">{% trans '본 메일은 발신전용으로 회신할수 없습니다.' %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="3" height="20">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="bx_Dublin.xsd">
+  <contract>
+    <id><![CDATA[root/contract/id]]></id>
+    <number><![CDATA[root/contract/number]]></number>
+    <name><![CDATA[root/contract/name]]></name>
+    <status><![CDATA[root/contract/status]]></status>
+    <complete_date><![CDATA[root/contract/complete_date]]></complete_date>
+  </contract>
+  <contract_users>root/contract_users</</contract_users>
+  <timelines>root/timelines</</timelines>
+  <pdf><![CDATA[root/pdf]]></</pdf>
+</root>
