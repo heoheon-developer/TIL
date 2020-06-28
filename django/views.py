@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import logging
 import binascii, hashlib
 import onetimepass as otp
@@ -467,3 +468,12 @@ def is_admin(user):
         admin = True
 
     return admin
+=======
+from django.shortcuts import render
+
+# Create your views here.
+
+
+
+git config --global user.email "heoheon.dev@gmail.com"
+>>>>>>> 932b32ce582f3c23d7830c74e529bff75392e4f1
