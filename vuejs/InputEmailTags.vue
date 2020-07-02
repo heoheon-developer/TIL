@@ -448,3 +448,5 @@
 	}
 
 </style>
+
+vue.js inputtagemail
