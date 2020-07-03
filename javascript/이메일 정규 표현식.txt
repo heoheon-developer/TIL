@@ -1,0 +1,9 @@
+			keyUpEmail(e) {
+				let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+				if (!re.test(this.email)) {
+					this.idErrorMessage = '유효한 email을 입력하세요.'
+					return
+				}
+				this.idErrorMessage = ''
+				this.check_mail = true
+			},
