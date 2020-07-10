@@ -1,0 +1,26 @@
+stages:
+  - pull
+  - build
+
+pull:
+  stage : pull
+  script: 
+   - cd /home/legal/db_project_2019
+   - sudo git pull origin master
+   - sudo rsync -avz SITE/SiteBack/ /home/legal/box/
+   - sudo chown legal:legal -R /home/legal/box
+   - sudo service uwsgi restart
+  tags : 
+   - pull
+
+build:
+  stage : build
+  script: 
+   - cd /home/legal/db_project_2019/SITE/SiteFront/user-site-front
+   - sudo cp src/plugins/constants_dev.js src/plugins/constants.js
+   - sudo yarn install
+   - sudo yarn build
+   - sudo rsync -avz dist /home/legal/repo/
+   - sudo service uwsgi restart
+  tags : 
+   - build
