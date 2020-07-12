@@ -1,5 +1,4 @@
-package algorithm.java.question;
-
+package algorithm.java.quetion;
 
 import java.util.*;
 
