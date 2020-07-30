@@ -3,7 +3,7 @@ public class Mun1 {
     public static void main(String[] args){
 
     
-    int[][] = [[0, 3], [1, 1], [1, 5], [2, 2], [3, 3], [4, 0]];
+    int[][] ={{[}0, 3], [1, 1], [1, 5], [2, 2], [3, 3], [4, 0]};
 
 
 
