@@ -1,0 +1,562 @@
+{% extends "layout_index.html" %}
+{%load staticfiles%}
+{% load i18n %}
+{% block content %}
+
+<section id="main_legalsearch">
+	<h1>지능형 법률검색 서비스<br /><img src="{% static '/images/main/legalsearch_logo.png' %}" alt="법률정보통합검색" /></h1>
+	<form onsubmit="return form_check();">
+		<fieldset class="legalsearch_form">
+			<legend>통합 검색 폼</legend>
+			<div class="search_field">
+				<input id="searchKeyword" name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." onchange="noMR(this);specialWordCheck(this);keywordChk(this.value);" />
+			</div>
+			 <button type="submit" class="btn_search"><img src="{% static '/images/main/btn_legalsearch.png' %}" alt="검색" /></button>
+		</fieldset>
+	</form>
+
+	<form id="searchFrm" name="searchFrm" method="get">
+		<input id="slo" name="slo" type="hidden" value="all">
+		<input id="keyword" name="keyword" type="hidden">
+	</form>
+</section>
+<script>
+	function form_check() {
+		var keyword     = $('#searchKeyword').val();
+
+		if (keyword == '') {
+			alert('검색 키워드을 입력하세요');
+			$('#searchKeyword').focus();
+			return false;
+		} else {
+
+			if (!keywordChk(keyword)) {
+				return false;
+			}
+
+			var keyword_arr = keyword.split(' ');
+			if (keyword_arr.length > 5) {
+
+				keyword = '';
+				for (var i=0; i < 5; i++) {
+					keyword += keyword_arr[i];
+					if (i <= 4) {
+						keyword += ' ';
+					}
+				}
+			}
+		}
+
+		$('#keyword').val(encodeURI(keyword))
+		$('#slo').val('all');
+
+		document.searchFrm.action = 'http://ls.byunhosanim.com/list/all';
+		document.searchFrm.submit();
+		return false;
+	}
+
+	function noMR(obj) {
+		var regexp = new RegExp(/ {2,}/g);
+		$(obj).val($(obj).val().replace(regexp,' '));
+		return false;
+	}
+
+	function specialWordCheck(obj) {
+		var pattern = /[~!@\#$%<>^&*\=+_?,./`:;{}()\[\]\\\|\'"]/g;
+		if (pattern.test(obj.value)) {
+			obj.value = obj.value.replace(pattern, '', function (s) {
+				return '';
+			});
+		}
+	}
+
+	function keywordChk(keyword){
+		var keyword_arr = ltrim(rtrim(keyword)).split(' ');
+
+		if (keyword_arr.length > 5) {
+			alert("검색 키워드는 최대 5개만 가능합니다.");
+			$('#keyword').val(keyword_arr[0] + ' ' + keyword_arr[1] + ' ' + keyword_arr[2] + ' '+keyword_arr[3] + ' ' + keyword_arr[4])
+			$('#keyword').focus();
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	function ltrim(value) {
+		return value.replace(/^\s+/,"");
+	}
+
+	function rtrim(value) {
+		 return value.replace(/\s+$/,"");
+	}
+</script>
+<!-- 궁금해요 변호사님 -->
+<div class="main_content">
+	<section id="wonder_lawyer" class="main_latest_media">
+		<h1>궁금해요 변호사님!</h1>
+
+		<ul class="media_view_list">
+
+      {% for help_list in lawyerHelp %}
+
+				<li>
+					<a href="https://www.youtube.com/embed/{{help_list.youtube}}?version=3&enablejsapi=1" data-type="movie">
+						<div class="screenshot"><img src="https://img.youtube.com/vi/{{help_list.youtube}}/mqdefault.jpg" alt="" draggable="false"></div>
+						<p class="subject">{{help_list.title}}</p>
+						<p class="date">{{help_list.register_date}}</p>
+					</a>
+				</li>
+    {% endfor %}
+		</ul>
+		<div class="btn_bottom_set">
+			<a href="/contents/lawyer" class="btn_basic">궁금해요 변호사님! 더보기</a>
+		</div>
+	</section>
+</div>
+<!-- 카드뉴스 -->
+<div class="main_content gray">
+	<section id="card_news" class="main_latest_media">
+		<h1>카드뉴스</h1>
+		<ul class="media_view_list">
+			{% for news_list in cardNews %}
+				<li>
+  				<a href="{% static '/uploads{{news_list.file_path}}/{{news_list.file_name}}' %}" data-type="photo">
+						<div class="screenshot"><img src="{% static '/uploads' %}{{news_list.list_file_path}}/{{news_list.list_file_name}}" alt="" /></div>
+						<p class="subject">{{news_list.title}}</p>
+						<p class="date">{{news_list.register_date}}</p>
+					</a>
+				</li>
+				{% endfor %}
+		</ul>
+		<div class="btn_bottom_set">
+			<a href="/contents/card_news" class="btn_basic">카드뉴스 더보기</a>
+		</div>
+	</section>
+</div>
+<div class="popup_media_view">
+	<div class="movie_area"><iframe width="900" height="506" src="" frameborder="0" id="byun_video" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+	<div class="photo_area"><img src="" alt="" /></div>
+	<button type="button" class="btn_close"><img src="{% static '/images/contents/btn_media_close.png' %}" alt="닫기" /></button>
+</div>
+<!-- 배너 -->
+<aside id="law_office_advertise">
+	<h1>법률 사무소 광고</h1>
+	<ul>
+		<li style="background-color:#161511"><a href="https://www.plawoffice.com/" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_loa_plo.png' %}" alt="법률사무소 푸름" /></a></li>
+		<li style="background-color:#1D1D1D"><a href="http://www.dikaion.com/" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_loa_dikaion.png' %}" alt="법무법인 디카이온" /></a></li>
+		<li style="background-color:#222931"><a href="http://jeongyul.co.kr/" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_loa_jeoungyul.png' %}" alt="법무법인(유한) 정률" /></a></li>
+		<li style="background-color:#1F1E1A"><a href="http://www.daolaw.co.kr" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_loa_dao.png' %}" alt="법률사무소 다오" /></a></li>
+	</ul>
+</aside>
+<script>
+function randomOfficeAdvertise() {
+	var lawOfficeAdvertise = jQuery("aside#law_office_advertise");
+	var loaList = lawOfficeAdvertise.find("ul");
+	var loaItem = loaList.find("li");
+	var loaLen = loaItem.size();
+	var ranNum = Math.floor(Math.random()*loaLen) + 1;
+
+	loaItem.eq(ranNum-1).show();
+}
+randomOfficeAdvertise();
+</script>
+<div class="main_content">
+	<section id="main_consult_instance">
+		<h1>상담사례</h1>
+		<div class="main_work_category">
+			<div class="flexslider carousel">
+				<ul class="slides">
+          {% for category_list in category %}
+						<li class="{{category_list.category_ic}}"><strong class="deps1">{{category_list.category_name}}</strong>
+							<div class="deps2_list">
+								<ul>
+                  {% for category_detail_list in category_detail %}
+                    {% if category_detail_list.category_idx == category_list.category_idx %}
+											<li><a href="/counsel/list/newest?category={{category_detail_list.category_sub_idx}}&sub_keyword=">{{category_detail_list.category_sub_name}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+								</ul>
+							</div>
+						</li>
+            {% endfor %}
+				</ul>
+			</div>
+			<div class="flex_guide_set">
+				<img src="{% static '/images/main/btn_prev.png' %}" class="flex-prev" alt="" />
+				<img src="{% static '/images/main/btn_next.png' %}" class="flex-next" alt="" />
+			</div>
+		</div>
+		<script>
+		var wcSlider = jQuery("#main_consult_instance .main_work_category .flexslider");
+		$(window).on("load",function() {
+
+			wcSlider.flexslider({
+				animation: "slide",
+				animationLoop: false,
+				itemWidth: 212,
+				itemMargin: 10,
+				minItems: 5,
+				maxItems: 5,
+				customDirectionNav: jQuery("#main_consult_instance .main_work_category .flex_guide_set img"),
+				controlNav: false,
+				slideshow: false
+			});
+
+			var wcList = wcSlider.find("ul.slides");
+			var wcItem = wcList.find(">li")
+			var deps2List = wcItem.find(".deps2_list");
+			deps2List.each(function(i) {
+				deps2List.eq(i).mCustomScrollbar({
+					theme: "light-2",
+					scrollInertia: 400
+				});
+			})
+
+			wcItem.on("mouseenter",function() {
+				wcItem.removeClass("on");
+				jQuery(this).addClass("on");
+			})
+
+			wcSlider.on("mouseleave",function() {
+				wcItem.removeClass("on");
+			})
+
+			wcSlider.on("mousewheel",function(e) {
+				e.preventDefault();
+			})
+		});
+
+
+		</script>
+		<table class="board_list">
+			<caption>최근 상담리스트</caption>
+			<colgroup>
+				<col style="width:130px" />
+				<col style="width:148px" />
+				<col style="width:*" />
+				<col style="width:170px" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">상태</th>
+					<th scope="col">분야</th>
+					<th scope="col">제목</th>
+					<th scope="col">답변</th>
+				</tr>
+			</thead>
+			<tbody>
+          {% for counsel_list in counsel %}
+					<tr>
+						<td><span class="btn_basic {% if counsel_list.counsel_status  == 'W' %} dark {% elif counsel_list.counsel_status == 'P' %} light {% endif %}">{{counsel_list.comm_cd_nm}}</span></td>
+						<td><strong class="category">{{counsel_list.category}}</strong></td>
+						<td class="subject"><a href="/counsel/view/{{counsel_list.counsel_idx}}"> {{counsel_list.counsel_title}}</a></td>
+						<td class="subject">
+						{% if counsel_list.answer_count > 0 %}
+								<strong>{{ counsel_list.lawyer_name }} 변호사</strong>
+								{% if counsel_list.answer_count > 1 %}
+									외 {{ counsel_list.answer_count |add:"-1" }}
+								{% endif %}
+							{% endif %}
+						</td>
+					</tr>
+  				{% endfor %}
+			</tbody>
+		</table>
+		<div class="btn_bottom_set">
+			<a href="/counsel/list" class="btn_basic">상담사례 더보기</a>
+		</div>
+	</section>
+</div>
+<div class="main_content gray">
+	<section id="main_lawyer_info">
+		<h1>분야별로 전문성을 갖춘 변호사가 당신을 도와드립니다.</h1>
+		<div class="lawyer_slide">
+			<div class="flexslider carousel">
+				<ul class="slides">
+
+      		{% for lawyers_list in lawyers %}
+            <li>
+							<div class="lawyer_info">
+								<div class="profile">
+
+
+									<a href="/lawyer/view/{{lawyers_list.lawyer_idx}}/intro">
+										<h2>{{lawyers_list.lawyer_name}} 변호사</h2>
+										<div class="photo">
+											<img src="{% static '/uploads' %}{{lawyers_list.lawyer_profile_path}}/pic_{{lawyers_list.lawyer_profile_name}}" onerror="this.src='{% static '/images/template/lawyer_' %}{{lawyers_list.lawyer_gender}}.png">
+										</div>
+										<ul class="summary">
+											<li><i class="like">♥</i>{{lawyers_list.like_cnt}}<span class="bar">|</span>답변수 {{lawyers_list.ansCnt}}</li>
+
+                      <li>{{lawyers_list.lawyer_company_address|truncatewords:2|cut:"." }}</li>
+                      <li>{{lawyers_list.category}}</li>
+										</ul>
+									</a>
+								</div>
+								<div class="consult_history">
+									<h3><a href="/counsel/view/{{lawyers_list.counsel_idx}}">{{lawyers_list.counsel_title}}</a></h3>
+									<p class="category">#{{lawyers_list.category_sub_name}}</p>
+									<blockquote class="reply">
+										<cite>{{lawyers_list.counsel_answer_title}}</cite>
+										<p>{{lawyers_list.counsel_answer_contents}}</p>
+									</blockquote>
+								</div>
+								<div class="btn_lawyer_more">
+									<a href="/lawyer/searchlist?cg={{lawyer_list.category_sub_idx}}">{{lawyer_list.category_sub_name}} 관련 변호사 더 보기</a>
+								</div>
+							</div>
+						</li>
+						{% endfor %}
+				</ul>
+
+			</div>
+			<div class="flex_guide_set">
+        <img src="{% static '/images/main/btn_prev.png' %}" class="flex-prev" alt="" />
+				<img src="{% static '/images/main/btn_next.png' %}" class="flex-next" alt="" />
+			</div>
+			<div class="flex_navi"></div>
+		</div>
+		<script>
+		$(window).on("load",function() {
+			$("#main_lawyer_info .lawyer_slide .flexslider").flexslider({
+				animation: "slide",
+				animationLoop: false,
+				itemWidth: 338,
+				itemMargin: 40,
+				minItems: 3,
+				maxItems: 3,
+				customDirectionNav: $("#main_lawyer_info .lawyer_slide .flex_guide_set img"),
+				controlsContainer: $("#main_lawyer_info .lawyer_slide .flex_navi"),
+				slideshow: false
+			});
+		});
+		</script>
+	</section>
+</div>
+<div class="main_content">
+	<section id="main_sns">
+		<h1 class="hidden_tit">변닷 SNS</h1>
+		<ul>
+			<li>
+				<a href="https://www.instagram.com/byunhosanim/" target="_blank" title="새 창 열림">
+					<img src="{% static '/images/main/ico_sns_instargram.png' %}" alt="" />Instagram
+				</a>
+			</li>
+			<li>
+				<a href="https://www.youtube.com/channel/UCBUNOSzAe9Y8zewyTNyGcLw" target="_blank" title="새 창 열림">
+					<img src="{% static '/images/main/ico_sns_youtube.png' %}" alt="" />Youtube
+				</a>
+			</li>
+			<li>
+				<a href="https://tv.naver.com/byunhosanim" target="_blank" title="새 창 열림">
+					<img src="{% static '/images/main/ico_sns_navertv.png' %}" alt="" />NAVER TV
+				</a>
+			</li>
+			<li>
+				<a href="https://byunhosanim.blog.me/" target="_blank" title="새 창 열림">
+					<img src="{% static '/images/main/ico_sns_naverblog.png' %}" alt="" />NAVER blog
+				</a>
+			</li>
+			<li>
+				<a href="https://www.facebook.com/변호사님닷컴-354794078281825/" target="_blank" title="새 창 열림">
+					<img src="{% static '/images/main/ico_sns_facebook.png' %}" alt="" />Facebook
+				</a>
+			</li>
+		</ul>
+	</section>
+</div>
+<div class="main_content gray">
+	<section id="main_latest_posts">
+		<h1 class="hidden_tit">최근게시물</h1>
+		<div class="latest_wrap">
+			<article>
+				<h2>공지사항</h2>
+
+
+
+        <ul>
+
+            {% if notics is None  %}
+
+						<li>
+							내용이 없습니다.
+						</li>
+
+            {% else %}
+
+              {% for notics_list in notics %}
+
+  							<li>
+                  {% if notics.board_config_idx >= 2  %}
+      							<a href="/guide/notic_view/{{notics_list.board_name}}"> {{notics_list.title}}</a>
+  						    {% else %}
+      							<a href="/contents/law_news_detail/{{notics_list.board_idx}}"> {{notics_list.title}}</a>
+  						    {% endif %}
+  								<time datetime="{{ notics_list.register_date|date:"Y-m-d" }}">{{ notics_list.register_date|date:"Y-m-d" }}</time>
+  							</li>
+  					  {% endfor %}
+            {% endif %}
+				</ul>
+
+
+
+				<div class="btn_more">
+					<a href="/guide/notic">+더보기</a>
+				</div>
+			</article>
+			<article>
+				<h2>변닷뉴스</h2>
+
+        <!-- {{news.total_count}} -->
+				<ul>
+          {% if news is None  %}
+						<li>
+							내용이 없습니다.
+						</li>
+            {% else %}
+
+            {% for news_list in news %}
+
+							<li>
+								<a href="/contents/law_news_detail/{{news_list.board_idx}}">[{{news_list.board_name}}] {{news_list.title}}</a>
+								<time datetime="{{ news_list.register_date|date:"Y-m-d" }}">{{ news_list.register_date|date:"Y-m-d" }}</time>
+							</li>
+
+            {% endfor %}
+          {% endif %}
+				</ul>
+				<div class="btn_more">
+					<a href="/contents/law_news">+더보기</a>
+				</div>
+			</article>
+		</div>
+	</section>
+</div>
+<div class="main_content">
+	<section id="main_legal_links">
+		<h1 class="hidden_tit">법률정보</h1>
+		<ul>
+			<li><a href="http://www.scourt.go.kr/supreme/supreme.jsp" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_scourt.png' %}" alt=""></a></li>
+			<li><a href="http://www.spo.go.kr/spo/index.jsp" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_spo.png' %}" alt=""></a></li>
+			<li><a href="https://www.ccourt.go.kr/cckhome/kor/main/index.do" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_ccourt.png' %}" alt=""></a></li>
+			<li><a href="http://www.nts.go.kr/" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_nts.png' %}" alt=""></a></li>
+			<li><a href="http://www.moleg.go.kr/main.html" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_moleg.png' %}" alt=""></a></li>
+			<li><a href="http://www.moj.go.kr/moj/index.do" target="_blank" title="새 창 열림"><img src="{% static '/images/main/banner_moj.png' %}" alt=""></a></li>
+		</ul>
+	</section>
+</div>
+
+
+<article id="main_notice_event">
+    {% if popup1 is not None %}
+		<div class="ne_cont" id="popup_tab_1" style="display:block">
+			<input class="deleted1" value="{{popup1.deleted}}" type='hidden'></input>
+			<h2><a href="{{popup1.anchor}}"><img src="{% static '' %}{{popup1.file_path}}/{{popup1.file_name}}" alt="{{popup1.title}} - {{popup1.sub_title}}"  /></a></h2>
+			<div class="ne_info">
+				<p>{{popup1.title}} - {{popup1.sub_title}}</p>
+			</div>
+		</div>
+	{% endif %}
+
+  {% if popup2 is not None %}
+		<div class="ne_cont" id="popup_tab_2">
+			<input class="deleted2" value="{{popup2.deleted}}"  type='hidden'></input>
+			<h2><a href="{{popup2.anchor}}"><img src="{{popup2.file_path}}{{popup2.file_name}}" alt="{{popup2.title}} - {{popup2.sub_title}}" /></a></h2>
+			<div class="ne_info">
+				<p>{{popup2.title}} - {{popup2.sub_title}}</p>
+			</div>
+		</div>
+	{% endif %}
+
+	<ul class="ne_tab" id="neTab_user">
+	  {% if popup1 is not None %}
+			<li><a href="#popup_tab_1" class="on"><span class="category">{{popup1.title}}</span><strong class="subject">{{popup1.sub_title}}</strong></a></li>
+  	{% endif %}
+
+	 {% if popup2 is not None %}
+			<li><a href="#popup_tab_2"><span class="category">{{popup2.title}}</span><strong class="subject">{{popup2.sub_title}}</strong></a></li>
+		{% endif %}
+	</ul>
+	<div class="today_stop">
+		<label><input type="checkbox" /> 오늘하루 열지않음</label>
+		<button type="button" class="btn_close">닫기 <img src="{% static '/images/main/btn_ne_close.png' %}" alt="" class="ico" /></button>
+	</div>
+</article>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var mainNoticeEvent = $("#main_notice_event");
+	var todayStop = mainNoticeEvent.find(".today_stop");
+	var stCkbox = todayStop.find("input[type='checkbox']");
+	var btnClose = todayStop.find("button.btn_close");
+	var modalBg = $(".modal_bg");
+
+	var deleted1 =	$(".deleted1").val();
+	var deleted2 =	$(".deleted2").val();
+
+
+	btnClose.on("click",function() {
+		if(stCkbox.is(":checked") == true) {
+			setCookieMobile( "todayCookie", "done" , 1);
+		}
+		mainNoticeEvent.fadeOut(300);
+		initModal(false,300);
+	})
+
+	function setCookieMobile( name, value, expiredays ) {
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + expiredays );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+	function getCookieMobile() {
+		var cookiedata = document.cookie;
+		if (cookiedata.indexOf("todayCookie=done") < 0 ){
+			mainNoticeEvent.show();
+			modalBg.show();
+		}
+		else {
+			mainNoticeEvent.hide();
+			modalBg.hide();
+		}
+		//console.log(cookiedata)
+	}
+	if (deleted1=='3'||deleted2=='3') {
+		if (deleted1==undefined && deleted2==undefined) {
+			mainNoticeEvent.hide();
+			modalBg.hide();
+		}
+	}else{
+		getCookieMobile();
+	}
+
+	//이벤트 배너 텝
+	var neTab = mainNoticeEvent.find("ul.ne_tab");
+	var ntItem = neTab.find("li");
+	var neCont = mainNoticeEvent.find(".ne_cont");
+
+	if (deleted1 == undefined || deleted2 == undefined) {
+		ntItem.find("a").addClass("on");
+		neCont.show();
+		ntItem.css('width', '395px');
+	}else{
+
+		ntItem.find("a").on("click",function() {
+			var ntUrl = $(this).attr("href");
+
+			ntItem.find("a").removeClass("on");
+			$(this).addClass("on");
+
+			neCont.hide();
+			$(ntUrl).show();
+
+			return false;
+		})
+	}
+})
+</script>
+
+</div>
+
+{% endblock %}
