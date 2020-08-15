@@ -1,0 +1,141 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block content %}
+
+
+{% for category in category_profile %}
+<div class="container">
+	<h3>카테고리</h3>
+
+	<div style="margin-top:40px;">
+		<h4 style="display:inline-block; margin-right:20px;">1카테고리 정보</h4>
+
+		<button class="btn btn-primary" type="button" onclick="document.mdFrm.submit();">수정</button><br>
+		<form id="mdFrm" style="margin-top:5px;" name="mdFrm" action="/admin/category/modify" method="post">
+		<table class="table table-bordered table-hover form-group " border="1">
+			<tr>
+				<th class="active">코드</th>
+				<td><input class="form-control" id="category_idx" name="category_idx" type="text" value="<?=$category->category_idx ?>" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th class="active">이름</th>
+				<td><input class="form-control" id="category_name" name="category_name" value="{{ category.category_name }}"></td>
+			</tr>
+			<tr>
+				<th class="active">사용여부</th>
+				<td>
+					<select class="form-control" id="category_use" name="category_use">
+						<option value="1" {%  if  category.category_use == '0' %} selected="selected" {%  endif %}>미사용</option>
+			  			<option value="0" {%  if  category.category_use == '1' %} selected="selected" {%  endif %}>사용</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th class="active">순번</th>
+				<td><input class="form-control" id="category_sort" name="category_sort" type="text" value="{{ category.category_sort }}"></td>
+			</tr>
+			<tr>
+				<th class="active">아이콘 Class</th>
+				<td><input class="form-control" id="category_ic" name="category_ic" type="text" value="{{ category.category_ic }}"></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+
+	<div style="margin-top:40px;">
+		<h4 style="margin-right:20px;">2차카테고리 정보</h4>
+		<table class='table table-bordered table-hover form-group'  style="margin-top:5px;" border="1">
+			<thead>
+				<th class="active">코드</th>
+				<th class="active">이름</th>
+				<th class="active">사용여부</th>
+				<th class="active">순번</th>
+				<th class="active">비고</th>
+			</thead>
+			<tbody>
+				{% for category in category_subList %}
+					<tr id="sub_<?=$row['category_sub_idx'] ?>">
+						<td><input class="form-control" id="category_sub_idx" name="category_sub_idx" value="{{ category.category_sub_idx }}" readonly="readonly"></td>
+						<td><input class="form-control" id="category_sub_name" name="category_sub_name" value="{{ category.category_sub_name }}"></td>
+						<td>
+							<select class="form-control" id="category_sub_use" name="category_sub_use">
+								<option value="1" {%  if  category.category_sub_use == '0' %} selected="selected" {%  endif %}>미사용</option>
+			  					<option value="0" {%  if  category.category_sub_use == '1' %} selected="selected" {%  endif %}>사용</option>
+							</select>
+						</td>
+						<td><input class="form-control" id="category_sub_sort" name="category_sub_sort" value="{{ category.category_sub_sort }}"></td>
+						<td><a  class="btn btn-primary"  href="javascript:subModigy('{{ category.category_sub_idx }}')">수정</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+	<div style="margin-top:40px;">
+		<h4 style="display:inline-block; margin-right:20px;">2차 카테고리 등록 </h4>
+		<button  class="btn btn-primary"  type="button" onclick="form_submit();">등록</button>
+		<form id="subFrm" style="margin-top:5px;" name="subFrm" action="/admin/category/sub_insert" method="post">
+			<input id="category_idx" name="category_idx" type="hidden" value="<?=$category->category_idx ?>">
+			<table class="table table-bordered table-hover form-group" border="1">
+				<tr>
+					<th class="active">이름</th>
+					<td><input class="form-control" id="category_sub_name" name="category_sub_name" type="text"></td>
+				</tr>
+				<tr>
+					<th class="active">사용여부</th>
+					<td>
+						<select class="form-control" id="category_sub_use" name="category_sub_use">
+							<option value="1">사용</option>
+							<option value="0">미사용</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th class="active">순번</th>
+					<td><input class="form-control" id="category_sub_sort" name="category_sub_sort" type="text"></td>
+				</tr>
+				<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="수정">
+					<input type="button" value="목록" onclick="location.href='/adminbhsn/category/';">
+				</td>
+			</tr>
+			</table>
+		</form>
+
+		<form id="subMdFrm" name="subMdFrm" method="post" action="/admin/category/subModify"></form>
+	</div>
+</div>
+{% endfor %}
+<script>
+function form_submit() {
+	if ($('#category_sub_name').val() == '') {
+		alert('카테고리명을 입력하세요');
+		$('#category_sub_name').focus();
+		return;
+	}
+
+	document.subFrm.submit();
+}
+
+function subModigy(category_sub_idx) {
+
+	var parent 				= $('#sub_'+category_sub_idx);
+	var category_sub_idx 	= $(parent).find('#category_sub_idx').val();
+	var category_sub_name 	= $(parent).find('#category_sub_name').val();
+	var category_sub_use 	= $(parent).find('#category_sub_use').val();
+	var category_sub_sort	= $(parent).find('#category_sub_sort').val();
+
+	var content  = '<input id="category_sub_idx" name="category_sub_idx" type="hidden" value="'+category_sub_idx+'">';
+		content += '<input id="category_sub_name" name="category_sub_name" type="hidden" value="'+category_sub_name+'">';
+		content += '<input id="category_sub_use" name="category_sub_use" type="hidden" value="'+category_sub_use+'">';
+		content += '<input id="category_sub_sort" name="category_sub_sort" type="hidden" value="'+category_sub_sort+'">';
+		content += '<input id="category_idx" name="category_idx" type="hidden" value="<?=$category->category_idx ?>">';
+
+	$('#subMdFrm').html('');
+	$('#subMdFrm').append(content);
+	document.subMdFrm.submit();
+}
+</script>
+{% endblock %}
