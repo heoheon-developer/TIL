@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MemoryMemberRepositoryTest {
 
 
-    MemoryMemberRepository repository = new MemoryMemberRepository();
+    private MemoryMemberRepository repository = new MemoryMemberRepository();
 
     // 콜백 메서드
     @AfterEach
@@ -33,7 +33,6 @@ public class MemoryMemberRepositoryTest {
 
         Member result = repository.findById(member.getId()).get();
 
-
         System.out.println(result);
 
         assertThat(member).isEqualTo(result);
@@ -49,7 +48,6 @@ public class MemoryMemberRepositoryTest {
         Member member2 = new Member();
         member2.setName("spring2");
         repository.save(member2);
-
 
         Member result =  repository.findByName("spring1").get();
 
@@ -72,8 +70,6 @@ public class MemoryMemberRepositoryTest {
         List<Member> result = repository.findAll();
 
         assertThat(result.size()).isEqualTo(2);
-
-
 
     }
 
