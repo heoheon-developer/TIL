@@ -18,9 +18,6 @@ class MemberServiceTest {
 
         //then
 
-
-
-
     }
 
     @Test
