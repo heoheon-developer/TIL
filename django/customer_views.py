@@ -52,11 +52,6 @@ class Customers(views.APIView):
 				company = Company.objects.all().order_by(sort_field)
 				# company = User.objects.values('company_id').annotate(company_cnt=Count('company_id')).order_by(
 				# 	sort_field)
-				print("company==========", company.query)
-
-
-
-
 
 			else:
 				company = Company.objects.all().filter(name__icontains=searchContents).order_by(sort_field)
