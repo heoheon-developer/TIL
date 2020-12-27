@@ -1,10 +1,14 @@
 package com.example.fastcampus.hamburger;
 
 public interface Hamburger {
-	// To-DO
-	// 모든 햄버거에 필요로 되는 메서드가 정의된 햄버거 인터페이스를 설계합니다.
-	// 가격
-	
-	// 재료
-	
+
+
+	public static final int price = 0;
+    public static final String ingredient = "";
+    
+    // 가격 조회 메서드
+    public void printTotalPrice();
+    // 재료 출력 메서드
+    public void printIngredient();
+
 }

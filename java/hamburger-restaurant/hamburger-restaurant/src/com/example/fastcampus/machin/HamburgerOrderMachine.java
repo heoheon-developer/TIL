@@ -9,11 +9,18 @@ public class HamburgerOrderMachine {
 	private List<Hamburger> hamburgerList;
 
 	public HamburgerOrderMachine() {
-		// TODO 여기서 hamburgerList 를 초기화 합니다.
-	}
+		// TODO 여기서 hamburgerList 를 초기화 합니다.	
+		hamburgerList = new ArrayList<Hamburger>();
+}
 
 	public void order(Hamburger hamburger) {
 		// TODO 주문 받은 햄버거를 hamburgerList에 저장합니다.
+		
+		
+		
+		
+		
+		
 	}
 
 	public int completeOrder() {
