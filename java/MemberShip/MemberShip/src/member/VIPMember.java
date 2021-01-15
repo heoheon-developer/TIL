@@ -1,8 +1,12 @@
 package member;
 
-public class VIPMember{
+public class VIPMember extends Member{
 	// To-do VIPMember는 Member에서 상속을 받습니다.
 	// To-do 전담 상담원 아이디 속성을 추가합니다
+	
+	int memberId;
+	String membername;
+	int agentId;
 	
 	public VIPMember() {
 		// To-do 등급을 VIP로 설정해 줍니다.
