@@ -29,7 +29,7 @@ public class VIPMember extends Member{
 		sb.append("[VIP회원] = ");
 		sb.append("1.회원아이디 : " + this.getMemberId() +", ");
 		sb.append("2.회원이름 : " + this.getMemberName() +", ");
-		sb.append("3.상담원아이디 : " + this.getAgentId() +"");
+		sb.append("3.전담 상담원 : " + this.getAgentId() +"");
 		
 		return sb.toString();
 		
