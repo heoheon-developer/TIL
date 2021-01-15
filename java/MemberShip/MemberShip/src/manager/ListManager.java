@@ -1,6 +1,8 @@
 package manager;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import member.Member;
 
 public class ListManager {
@@ -11,6 +13,10 @@ public class ListManager {
 	
 	
 	//To-do 생성자를 통해 새로운 멤버리스트를 만듭니다.
+	public ListManager() {		
+		this.memberList = new ArrayList<Member>();
+		
+	}
 	
 	//To-do 회원을 추가하는 메서드를 만듭니다.
 	public void addMember(Member member) {		
@@ -25,9 +31,21 @@ public class ListManager {
 	}
 	
 	//To-do 모든 회원을 보여주는 메서드를 구현 합니다.
-	public void printMember(Member member) {		
-		memberList.remove(member);
+	public void printMember(Member member) {
 		
+		
+	}
+
+	public void showAllMember() {
+		for(Member member : this.memberList) {			
+				System.out.println(member.showMemberInfo());
+			
+		}
+		
+	}
+
+	public List<Member> getMemberList() {
+		return this.memberList;
 	}
 	
 	

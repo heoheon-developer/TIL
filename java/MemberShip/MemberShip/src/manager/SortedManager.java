@@ -13,6 +13,16 @@ public class SortedManager {
 		
 	}
 	//To-do 회원을 추가하는 메서드를 만듭니다.
+
+	public void addMember(Member memberKim) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showAllMember() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//To-do 회원을 삭제하는 메서드를 만듭니다.
 	

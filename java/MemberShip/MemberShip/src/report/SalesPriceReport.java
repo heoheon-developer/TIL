@@ -15,7 +15,12 @@ public class SalesPriceReport {
 	SalesRatio salesStrategy[] = { , };
 	// FAMILY 등급과 VIP 등급의 세일즈 전략을 2가지로 결정합니다.
 	
-	public SalesPriceReport(List<Member> list) {
+	public SalesPriceReport(List<Member> list) {		
+		for (Member member : list) {
+			
+			
+			
+		}
 		
 		
 	}

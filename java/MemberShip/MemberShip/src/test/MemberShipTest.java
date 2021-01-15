@@ -57,7 +57,7 @@ public class MemberShipTest {
 		sortedManager.addMember(memberSeo);
 		sortedManager.addMember(memberHan);
 		sortedManager.showAllMember();
-		*/
+		
 		
 	}
 }

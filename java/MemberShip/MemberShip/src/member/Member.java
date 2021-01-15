@@ -4,12 +4,12 @@ public class Member {
 	//Todo 일반 회원 클래스의 속성은 아이디, 이름, 등급(FAMILY) 세가지 입니다.
 	int memberId;
 	String memberName;
-	String FAMILY;
+	String rank;
 	
 	
 	public Member() {
 	//To-do 일반 멤버의 기본 등급을 FAMILY로 만들어 줍니다.
-		this.FAMILY = FAMILY;
+		this.rank = "FAMILY";
 	}
 	
 	public Member(int memberId, String memberName) {
@@ -37,13 +37,13 @@ public class Member {
 	
 
 	public String showMemberInfo() {
-		// To-do 회원 정보를 보여주는 showMemberInfo 메서드를 구현합니다.
+		StringBuilder sb = new StringBuilder();
+		sb.append("[일반회원] = ");
+		sb.append("1.회원아이디 : " + this.getMemberId() +", ");
+		sb.append("2.회원이름 : " + this.getMemberName());
 		
-		
-		
-		
-		
-		return "showMemberInfo";
+		return sb.toString();
+
 	}
 
 	
