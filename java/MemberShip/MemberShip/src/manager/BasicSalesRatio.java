@@ -5,24 +5,22 @@ public class BasicSalesRatio implements SalesRatio {
 	@Override
 	public double getSalesRatio(int price) {
 		
-		int result_price;
+		double result_price = 0;
 		double percent5 = 5;
 				
 		
 		//
-		if (price < 50000 || price > 100000) {
-			
-			double M5 = price
-
-			
-			
-			
-			
+		if (price < 50000 || price > 100000) {			
+			result_price = price * 0.05;			
+		} else if (price <100000 || price > 200000) {
+			result_price = price * 0.1;			
+		}else if (price >= 200000){
+			result_price = price * 0.2;			
 		}
 		
 		
 		// TODO Auto-generated method stub
-		return 0;
+		return result_price;
 	}
 	
 	// To-do  일반 회원인 경우 5만원 이하는 0%, 

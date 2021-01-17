@@ -12,7 +12,7 @@ public class SalesPriceReport {
 	List<Member> list;
 	
 	double ratio = 0.0;
-	SalesRatio salesStrategy[] = { , };
+	SalesRatio salesStrategy[] = {, };
 	// FAMILY 등급과 VIP 등급의 세일즈 전략을 2가지로 결정합니다.
 	
 	public SalesPriceReport(List<Member> list) {		
