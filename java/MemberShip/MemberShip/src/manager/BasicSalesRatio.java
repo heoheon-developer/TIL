@@ -6,18 +6,20 @@ public class BasicSalesRatio implements SalesRatio {
 	public double getSalesRatio(int price) {
 		
 		double result_price = 0;
-		double percent5 = 5;
+		double discount = 0;
 				
-		
-		//
-		if (price < 50000 || price > 100000) {			
-			result_price = price * 0.05;			
-		} else if (price <100000 || price > 200000) {
-			result_price = price * 0.1;			
+		// ÇÒÀÎ·ü
+		if (price < 50000 && price > 100000) {
+			discount = 0.05;			
+		} else if (price <= 100000 && price <= 200000) {
+			discount = 0.1;						
 		}else if (price >= 200000){
-			result_price = price * 0.2;			
+			discount = 0.2;
 		}
 		
+		double discount_price = price * discount;
+		
+		result_price = price - discount_price;
 		
 		// TODO Auto-generated method stub
 		return result_price;

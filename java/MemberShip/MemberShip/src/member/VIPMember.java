@@ -59,6 +59,14 @@ public class VIPMember extends Member{
 		this.agentId = agentId;
 	}
 
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
 	
 	
 	

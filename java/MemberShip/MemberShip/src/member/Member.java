@@ -35,6 +35,16 @@ public class Member {
 		this.memberName = memberName;
 	}	
 	
+	
+	
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
 
 	public String showMemberInfo() {
 		StringBuilder sb = new StringBuilder();
