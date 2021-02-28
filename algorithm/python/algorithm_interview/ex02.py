@@ -1,4 +1,7 @@
-import pandas as pd
+import pan
+
+
+das as pd
 
 # 코로나 엑셀 데이터 파일(.xlsx)이 저장된 경로입니다.
 data_path = './data/corona_data.xlsx'
